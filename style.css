@@ -34,6 +34,14 @@ h6,
   font-weight: 700;
   color: #333; /* Cor mais escura para títulos */
 }
+.btn-hamburger {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #333;
+  cursor: pointer;
+}
 
 /* ==== 2. CLASSE UTILITÁRIA - CONTAINER ==== */
 /* Esta é uma das classes mais importantes. Ela limita a largura do
@@ -436,7 +444,6 @@ h6,
 
 /* Regras para telemóveis (telas de até 768px) */
 @media (max-width: 768px) {
-  /* --- Ajustes no Cabeçalho --- */
   /* --- Novos Ajustes no Cabeçalho --- */
 
   /* 1. Mostra o botão hambúrguer */
@@ -477,40 +484,79 @@ h6,
   }
 
   /* ... (o resto das suas regras responsivas .hero, .benefits, etc., continuam iguais) ... */
-  /* --- Ajustes na Secção Hero --- */
-  .hero .container {
-    flex-direction: column; /* A MÁGICA: Empilha o texto e a imagem */
-    text-align: center;
-  }
-  .hero-content h1 {
-    font-size: 2.5rem; /* 40px */
-  }
+}
 
-  /* --- Ajustes na Secção "Sobre" --- */
-  .about-content {
-    flex-direction: column; /* Empilha a imagem e o texto */
-  }
-  .about-image {
-    max-width: 100%; /* Imagem ocupa a largura total */
-  }
+/* ==== 12. ESTILOS DO MODAL DE FLYER ==== */
 
-  /* --- Ajustes no Grid de Serviços --- */
-  .services-grid {
-    grid-template-columns: 1fr; /* 1 coluna */
-  }
+.modal-container {
+  position: fixed; /* Fica fixo na tela */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Fundo escuro semi-transparente */
 
-  /* --- Ajustes na Grelha da Galeria --- */
-  .gallery-grid {
-    grid-template-columns: 1fr; /* 1 coluna */
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-  /* --- Ajustes na Secção Contato --- */
-  .contact-content {
-    flex-direction: column; /* Empilha as infos e o formulário */
-    gap: 20px;
-  }
-  .contact-info,
-  .contact-form {
-    flex-basis: 100%; /* Ocupa 100% da largura */
-  }
+  z-index: 2000; /* Garante que fique acima de tudo */
+
+  /* Transição para o efeito de "fade" */
+  opacity: 1;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  visibility: visible;
+}
+
+/* Classe que o JS vai usar para esconder */
+.modal-container.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none; /* Impede cliques quando escondido */
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+
+  width: 90%; /* Ocupa 90% da tela em celulares */
+  max-width: 500px; /* Mas no máximo 500px em desktops */
+
+  position: relative; /* Para posicionar o botão 'X' */
+  text-align: center;
+}
+
+.modal-content img {
+  width: 100%; /* Faz a imagem do flyer preencher o modal */
+  height: auto;
+  border-radius: 5px;
+}
+
+.modal-close {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+
+  background-color: #333;
+  color: white;
+  border: 2px solid white;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  font-size: 16px;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  line-height: 1;
+  z-index: 2010;
+}
+
+.btn-modal-agendar {
+  margin-top: 20px;
+  width: 100%;
 }
